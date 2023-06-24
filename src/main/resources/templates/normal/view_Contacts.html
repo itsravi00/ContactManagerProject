@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang ="en" xmlns:th = "http://www.thymeleaf.org" th:replace = "normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>View Contacts</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+ function check(){
+	 alert("1");
+ }
+</script>
+<style type="text/css">
+  .current {
+  color: green;
+}
+
+#pagin1 li {
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+<section>
+  <div class="card mr-3 ml-3">
+   <div class="card-body">
+    <div class="text-center"><h1>Your Contacts</h1>
+    <table class="table">
+      <thead> 
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">phone</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each = "c : ${contacts}">
+          <th  th:text = "'SCM2020'+${c.cId}" scope="row"></th>
+          <td class = "pagin" >
+          <img class = "my_profile_pic" th:src= "@{'/img/'+${c.image}}" alt="profile photo" src="">
+          <span th:text = "${c.name}"></span></td>
+          <td class = "pagin">
+          <a href = "" th:href= "@{'/user/'+${c.cId}+'/contact/'}">
+           <span  th:text = "${c.email}"></span></a>
+          </td>
+          <td class = "pagin" th:text = "${c.phone}"></td>
+          <td class = "pagin">
+          <a th:href = "@{'/user/delete/' +${c.cId}}" class = "btn btn-danger">Delete</a>
+          <form th:action="@{'/user/update/' +${c.cId}}" method="post" class = "mt-2">
+           <button class = "btn btn-secondary" onclick = "pagin();">update</button>
+           </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div></div>
+     <nav aria-label="Page navigation example" class = "text-center">
+  <ul id ="pagin1" class="pagination text-center">
+   
+  </ul>
+</nav>
+    </div>
+   </div>
+  </div>
+</section>
+
+</body>
+</html>

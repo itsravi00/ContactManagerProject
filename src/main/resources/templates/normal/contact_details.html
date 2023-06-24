@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang ="en" xmlns:th = "http://www.thymeleaf.org" th:replace = "normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Contact Details</title>
+</head>
+<body>
+<section>
+  <div class="card mr-3 ml-3">
+   <div class="card-body">
+    <div class=" container text-center"><h1>Your Contacts</h1>
+     <img class = "my_profile_pic" style="height : 200px; width : 200px;" th:src= "@{'/img/'+${contact.image}}" alt="profile photo" src="">
+    <h3><span th:text = "${contact.name}"></span>(<span th:text = "${contact.secondName}"></span>)</h3>
+    <table class="table">
+        <tr>
+          <th scope="col">ID</th>
+           <th  th:text = "'SCM2020'+${contact.cId}" scope="row"></th>
+           </tr>
+           <tr>
+          <th scope="col">Email</th>
+          <td>
+          <span th:text = "${contact.email}"></span>
+         </td>
+         </tr>
+         <tr>
+          <th scope="col">phone</th>
+          <td th:text = "${contact.phone}"></td>
+          </tr>
+          <tr>
+          <th scope="col">Job Designation</th>
+          <td th:text = "${contact.work	}"></td>
+          </tr>
+          <tr>
+          <th scope="col">Comment</th>
+          <td th:text = "${contact.description}"></td>
+          </tr>
+       </table>
+	   	 <a style = "width:100%" th:href = "@{'/user/delete/' +${contact.cId}}" class = "btn btn-danger">Delete</a>
+	     <form th:action="@{'/user/update/' +${contact.cId}}" method="post" class = "mt-2">
+           <button style = "width:100%" class = "btn btn-secondary">update</button>
+        </form>
+    </div>
+   </div>
+  </div>
+</section>
+ 
+</body>
+</html>
